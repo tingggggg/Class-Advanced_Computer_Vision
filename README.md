@@ -17,4 +17,4 @@ Connected components
 * Label the fingers with 4-connected neighbor
 * Analyze and print the computational time of program
 
-![image](https://github.com/tingggggg/Class-Advanced_Computer_Vision/blob/main/HW2/results/flowchar.png =70%x)
+![image](https://github.com/tingggggg/Class-Advanced_Computer_Vision/blob/main/HW2/results/flowchar.png)
