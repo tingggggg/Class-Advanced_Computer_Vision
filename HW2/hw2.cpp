@@ -244,7 +244,6 @@ void find_fingers(RGB* img, ccp* comp, RGB* img_finger,int idx){
         }
     }
 
-
     // tmp original Img(with finger) dicrease no finger hand
     for(i = comp->min_y; i < comp->max_y + 1; i++){
         for(j = comp->min_x; j < comp->max_x + 1; j++)
