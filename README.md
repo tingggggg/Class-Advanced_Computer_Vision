@@ -16,3 +16,5 @@ Connected components
 * Use the morphology algorithms to reserve the fingers
 * Label the fingers with 4-connected neighbor
 * Analyze and print the computational time of program
+
+![image](https://github.com/tingggggg/Class-Advanced_Computer_Vision/blob/main/HW2/results/flowchar.png x70%)
