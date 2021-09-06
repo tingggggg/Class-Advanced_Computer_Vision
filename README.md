@@ -30,3 +30,8 @@ Unwarp the distorted image of fish-eye camera
 
 Transfer the road image to bird’s eye view by inverse perspective mapping
 <img src="https://github.com/tingggggg/Class-Advanced_Computer_Vision/blob/main/HW3/results/hw3_2.png">
+
+
+## HW4
+Find the target in the image sequence .avi
+<img src="https://github.com/tingggggg/Class-Advanced_Computer_Vision/blob/main/HW4/results/frame.png">
