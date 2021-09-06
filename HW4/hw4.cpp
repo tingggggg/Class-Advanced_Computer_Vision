@@ -46,7 +46,6 @@ int main( int argc, char** argv ){
   cout << "Init ROI Loc: " << roi << endl;
   tracker->init(frame,roi);
 
-
   std::string gttxt = argv[2];
   ifstream fin(gttxt);
 
@@ -63,7 +62,6 @@ int main( int argc, char** argv ){
   cv::Mat image = cv::Mat::zeros(500, 920, CV_8UC3);
 	image.setTo(cv::Scalar(255, 255, 255));
   std::vector<cv::Point> points;
-
 
   // perform the tracking process
   clock_t start, end;
@@ -85,7 +83,6 @@ int main( int argc, char** argv ){
     tracker->update(frame,roi);
     end = clock();
     track_times += end - start;
-
 
     // eval IOU
     fin >> gt_x >> gt_y >> gt_w >> gt_h;
@@ -142,5 +139,6 @@ int main( int argc, char** argv ){
 
   cout << "Average computational time per frame: " << (track_times / CLOCKS_PER_SEC) / frame_cnt << " s" << endl;
   cout << "Accuracy rate (number of correct frames (IoU>50%) / total frame number): " <<  ((double)correc_cnt / (double)frame_cnt) * 100 << " %" << endl;
+  
   return 0;
 }

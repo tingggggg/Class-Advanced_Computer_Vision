@@ -234,12 +234,6 @@ void find_fingers(RGB* img, ccp* comp, RGB* img_finger,int idx){
     }
     // copy
     memcpy(img, img_finger, sizeof(RGB)*512*512);
-    // for(i = comp->min_y; i < comp->max_y + 1; i++){
-    //     for(j = comp->min_x; j < comp->max_x + 1; j++)
-	// 	{
-	// 			copy_img((img + i * 512 + j), (img_finger + i * 512 + j));
-    //     }
-    // }
 
     // do dilate
     for(i = comp->min_y; i < comp->max_y + 1; i++){
@@ -249,13 +243,12 @@ void find_fingers(RGB* img, ccp* comp, RGB* img_finger,int idx){
             }
         }
     }
-    // memcpy(img, img_finger, sizeof(RGB)*512*512);
+
 
     // tmp original Img(with finger) dicrease no finger hand
     for(i = comp->min_y; i < comp->max_y + 1; i++){
         for(j = comp->min_x; j < comp->max_x + 1; j++)
 		{
-				// copy_img((img + i * 512 + j), (img_finger + i * 512 + j));
                 if(((tmpOriImg + i * 512 + j)->b == idx * 18) && ((img_finger + i * 512 + j)->b == idx * 18)){
                     (tmpOriImg + i * 512 + j)->b = 255;
                     (tmpOriImg + i * 512 + j)->g = 255;
@@ -285,8 +278,6 @@ int main()
 {   
     struct BmpFileHeader fileHeader;
     struct BmpInfoHeader infoHeader;
-    // BITMAPFILEHEADER fileHeader;
-    // BITMAPINFOHEADER infoHeader;
 
     char filein[60], fileout[20];
     int mode;
@@ -297,10 +288,6 @@ int main()
 
     FILE* pfin =fopen(filein,"rb");
     FILE* pfout = fopen("out.bmp", "wb");
-    // if(NULL==pfin){
-    //     printf("\7\n Cannot Open file: %s \n",filein);
-    //     exit(1);
-    //     }
 
     //Read the Bitmap file header;
     fread(&fileHeader,14,1,pfin);
@@ -314,8 +301,6 @@ int main()
 	weight=infoHeader.biWidth;
     if( infoHeader.biBitCount >= 1)
     {
-        // cout << "height: " << height << endl;
-        // cout << "weight: " << weight << endl;
         int size = height * weight;
 
         RGB* img = (RGB*)malloc(sizeof(RGB) * size);
@@ -359,9 +344,7 @@ int main()
                     BFS(&img_binary[i * weight + j], components_counts, i, j, &comp);
                     
                     // accroding min max xy to difine handVertical
-                    
                     comp.handVertical = (comp.max_y - comp.min_y) > (comp.max_x - comp.min_x) ? true : false;
-
 
                     // plot bounding box and print out results
                     int plot_color[3] = {255, 0, 0}; //red
@@ -370,15 +353,11 @@ int main()
                     end_p = clock();
                     cost_plot += (double)(end_p - begin_p)/CLOCKS_PER_SEC;
 
-
                     *(hand_list + components_counts - 1) = comp;
-                    // cout << "component hand " << components_counts << ": " << endl;
+
                     printf("area : %d, centroid point(%d, %d)\n", comp.total_pixel, comp.total_x / comp.total_pixel, 511 - comp.total_y / comp.total_pixel);
                     printf("the length of longest axis : %d, orientation : %s \n", comp.max_x - comp.min_x > comp.max_y - comp.min_y ? comp.max_x - comp.min_x : comp.max_y - comp.min_y, \
                                                                                    comp.max_x - comp.min_x > comp.max_y - comp.min_y ? "horizontal" : "vertical");
-                    // cout << "centorid:  x: " << comp.total_x / comp.total_pixel << ", y: " << comp.total_y / comp.total_pixel << ",  area: " << comp.total_pixel << endl;
-                    // cout << endl;
-                    // cout << 512 - comp.max_y << "  " << 512 - comp.min_y << endl;
 
                     // do morphology to find finger components
                     begin_m = clock();
@@ -450,9 +429,7 @@ int main()
                         }
                         printf("area : %d, centroid point(%d, %d)\n", comp.total_pixel, comp.total_x / comp.total_pixel, 511 - comp.total_y / comp.total_pixel);
                         printf("the length of longest axis : %d, orientation : %s \n", comp.max_x - comp.min_x > comp.max_y - comp.min_y ? comp.max_x - comp.min_x : comp.max_y - comp.min_y, \
-                                                                                   comp.max_x - comp.min_x > comp.max_y - comp.min_y ? "horizontal" : "vertical");
-                        // cout << "component finger " << print_cnt << ": " << endl;
-                        // cout << "centorid:  x: " << comp.total_x / comp.total_pixel << ", y: " << comp.total_y / comp.total_pixel << ",  area: " << comp.total_pixel << endl;
+                                                                                   comp.max_x - comp.min_x > comp.max_y - comp.min_y ? "horizontal" : "vertical");                        
                         cout << endl;
                     }
                 }

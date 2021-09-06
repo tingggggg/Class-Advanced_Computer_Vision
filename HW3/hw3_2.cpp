@@ -83,15 +83,9 @@ int main()
     int mode;
     printf("Input image filename(*.bmp): ");
     cin >> filein;
-    // printf("Output image filename(*.bmp): ");
-    // cin >> fileout;
 
     FILE* pfin =fopen(filein,"rb");
     FILE* pfout = fopen("hw3_2_out.bmp", "wb");
-    // if(NULL==pfin){
-    //     printf("\7\n Cannot Open file: %s \n",filein);
-    //     exit(1);
-    //     }
 
     //Read the Bitmap file header;
     fread(&fileHeader,14,1,pfin);
@@ -176,7 +170,6 @@ int main()
                 }
             }
         }
-
         //將修改後的圖片保存到文件 
         infoHeader.biHeight = world_img_height;
 	    infoHeader.biWidth = world_img_width;

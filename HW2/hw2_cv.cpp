@@ -6,15 +6,12 @@ using namespace cv;
 #include <time.h>
 
 
-
 int main(){
 
     char filein[60], fileout[20];
 
     printf("Input image filename(*.bmp): ");
     cin >> filein;
-    // printf("Output image filename(*.bmp): ");
-    // cin >> fileout;
 
     Mat img = cv::imread(filein);
     Mat img_binary, gray;
@@ -58,8 +55,6 @@ int main(){
         for (int col = 0; col < w; col++) {
             int label = labels.at<int>(row, col);
             if (label == 0) continue;
-            // cout << "row: " << row << "col: " << col << endl;
-            // cout << label << endl;
             dst.at<Vec3b>(row, col) = colors[label];
         }
     }
